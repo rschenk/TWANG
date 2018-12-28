@@ -776,7 +776,7 @@ bool tickParticles(){
     for(int p = 0; p < PARTICLE_COUNT; p++){
         if(particlePool[p].Alive()){
             particlePool[p].Tick(USE_GRAVITY);
-            leds[getLED(particlePool[p]._pos)] += CHSV(particlePool[p]._hue, 255, 255);
+            leds[getLED(particlePool[p]._pos)] = CHSV(particlePool[p]._hue, 255, 255);
             stillActive = true;
         }
     }
