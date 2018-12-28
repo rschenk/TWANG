@@ -773,19 +773,10 @@ void tickLava(){
 
 bool tickParticles(){
     bool stillActive = false;
-	uint8_t brightness;
     for(int p = 0; p < PARTICLE_COUNT; p++){
         if(particlePool[p].Alive()){
             particlePool[p].Tick(USE_GRAVITY);
-			
-			if (particlePool[p]._power < 5)
-			{
-				brightness = (5 - particlePool[p]._power) * 10;
-				leds[getLED(particlePool[p]._pos)] += CRGB(brightness, brightness/2, brightness/2);\
-			}
-			else			
-				leds[getLED(particlePool[p]._pos)] += CRGB(particlePool[p]._power, 0, 0);\
-		
+            leds[getLED(particlePool[p]._pos)] += CHSV(particlePool[p]._hue, 255, 255);
             stillActive = true;
         }
     }
